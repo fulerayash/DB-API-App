@@ -1,0 +1,36 @@
+<div class="card text-center">
+    <img class="img-fluid" [src]="productDelete.ImageUrl" alt="{{productDelete.Title}}" />
+    
+    <div class="card-header">
+        {{productDelete.Title}}
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">{{productDelete.ProductID}}</h5>
+        <p class="card-text">{{productDelete.Details}}</p>
+        <table class="table table-sm">
+            <thead>
+                <th>
+                    Product ID
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Color
+                </th>
+            </thead>
+            <tbody>
+                <tr class="table-warning">
+                    <td>{{productDelete.ProductID}}</td>
+                    <td>{{productDelete.Price | currency:"₹"}}</td>
+                    <td>{{productDelete.Color}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <button (click)='confirmDelete()' class="btn btn-danger" >DELETE</button>
+        <!-- <button (click)='confirmDelete()' class="btn btn-info" >Cancel</button> -->
+        </div>
+    </div>
+</div>
