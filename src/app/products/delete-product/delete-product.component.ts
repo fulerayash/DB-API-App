@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../Entities/Product';
 import { ProductService } from '../product.service';
 
@@ -9,31 +9,41 @@ import { ProductService } from '../product.service';
   styleUrls: ['./delete-product.component.css']
 })
 export class DeleteProductComponent implements OnInit {
-
-  error = false; 
+ 
   idToDeleteProduct;
+  productDelete : Product;
+  ImageHeight : number = 200;
+  ImageWidth : number = 200;
 
-
-  constructor(private route: ActivatedRoute, private serviceProduct: ProductService){
+  constructor(private route: ActivatedRoute,private router: Router, private serviceProduct: ProductService){
 
   }
   ngOnChanges(): void {
-
-
   }
 
-  confirmDelete(){
+  goBack() : void{
+    this.router.navigate(['listproducts'])
+  }
+  
+  confirmDelete() : void{
     this.serviceProduct.deleteProduct(this.idToDeleteProduct).subscribe(data=>{
       console.log(data);
     });
     alert("Deletion Completed");
+    this.goBack();
   }
+  
 
-  ngOnInit(): void {
+  ngOnInit() : void {
     this.route.params.subscribe(
       (data) => {
         this.idToDeleteProduct = data.id;
       }
-    )
+    );
+
+    this.serviceProduct.getProductsById(this.idToDeleteProduct).subscribe(data=>{
+      this.productDelete=data;
+    });
+    
   }
 }

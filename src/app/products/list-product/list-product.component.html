@@ -6,14 +6,15 @@
         <p class="text-info">This Angular App is created by {{developerName}}</p>
     </div>
     <div class= "row">
-        <div class= "col-md-2">Search Product: </div>
-        <div class= "col-md-6"><input [(ngModel)]='searchText' type='text' class='form-control'/>
+        <div class= "col-md-2">
+            <h5>Search Product:</h5>
         </div>
+        <div class= "col-md-6"><input [(ngModel)]='searchText' type='text' class='form-control'/></div>
     </div>
     <br />
     <div class="row">
         <div class="table table-responsive">
-            <table class="table table-striped" *ngIf='products && products.length'>
+            <table class="table" *ngIf='products && products.length'>
                 <thead class="thead-dark">
                     <tr>
                         <th>
@@ -36,7 +37,7 @@
                         </th>
                         
                         <th>
-                            In Stock
+                            InStock
                         </th>
 
                         <th>
@@ -61,20 +62,21 @@
                         <td>
                             <img [src]='p.ImageUrl'  [style.width.px]='ImageWidth' alt="{{p.Title}}"/>
                         </td>
-                        <td>
+                        <td >
                             {{p.ProductID}}
                         </td>
-                        <td class="text-info">
+                        <td (click)='detailedProduct(p.ProductID)' class="text-info">
                             {{p.Title | uppercase}}
                         </td>
                         <td>
-                            {{p.Price | currency: 'USD': 'symbol': '1.2-2'}}
+                            {{p.Price | currency: "₹": 'symbol': '1.2-2'}}
                         </td>
                         <td>
                             {{p.Color}}
                         </td>
                         <td>
-                            {{p.InStock}}
+                            <i *ngIf='p.InStock' class= "fa fa-check" aria-hidden="true"></i>
+                            <i *ngIf='!p.InStock' class= "fa fa-times" aria-hidden="true"></i>
                         </td>
                         <td>
                             {{p.Details}}
@@ -87,10 +89,6 @@
                         </td>
                         <td>
                             {{p.ExpiryDate}}
-                        </td>
-                        <td>
-                           <i *ngIf='p.InStock' class= "fa fa-check" aria-hidden="true"></i>
-                           <i *ngIf='!p.InStock' class= "fa fa-times" aria-hidden="true"></i>
                         </td>
                         <td>
                             <button (click)='editProduct(p.ProductID)' class="btn btn-info"><i class= "fa fa-edit" aria-hidden="true"></i></button>

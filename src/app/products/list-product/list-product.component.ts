@@ -31,4 +31,9 @@ export class ListProductComponent implements OnInit {
   deleteProduct(id): void{
     this.router.navigate(['deleteproduct',id])
   }
+
+  detailedProduct(id): void{
+    this.router.navigate(['productdetails',id])
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Entities/Product';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class EditProductComponent implements OnInit {
   productEdit: Product;
   editableProductForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private serviceProduct: ProductService) { }
+  constructor(private route: ActivatedRoute,private router: Router, private serviceProduct: ProductService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -64,6 +64,10 @@ export class EditProductComponent implements OnInit {
 
   }
 
+  goBack() : void{
+    this.router.navigate(['listproducts'])
+  }
+
   update(){    
     console.log(this.editableProductForm.value);
 
@@ -72,6 +76,7 @@ export class EditProductComponent implements OnInit {
       });
     // });
     alert("Updated");
+    this.goBack();
   }
 
 }

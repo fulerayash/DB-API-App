@@ -1,6 +1,6 @@
 <div class="container">
-    <h1>Add Product in Database</h1>
-    <form  novalidate #productform='ngForm' (ngSubmit)='saveProduct()' class = "form">
+    <h1>Details for new Product</h1>
+    <form  novalidate #productform='ngForm' class = "form">
       <div class ="form-group" >
         <label class=" form-check-label" for="ProductId">Product ID</label>
         <input name="ProductId" [(ngModel)]='model.ProductID' #id="ngModel" type="text" class="form-control" required/>
@@ -30,8 +30,7 @@
         <p>!!Color is required!!</p>
       </div>
       <div class = "form-group">
-        <input name="InStock" [(ngModel)]='model.InStock'type="checkbox"/>
-        <label class=" form-check-label" for="InStock">InStock</label>
+        <label><input name="InStock" [(ngModel)]='model.InStock' type="checkbox"/> InStock</label>
       </div>
       <div class = "form-group">
         <label class=" form-check-label" for="Details">Details</label>
@@ -39,7 +38,7 @@
       </div>
       <div class = "form-group">
         <label class=" form-check-label" for="Quantity">Quantity</label>
-        <input name="Quantity" [(ngModel)]='model.Quantity' #quantitiy="ngModel" type="number" class="form-control" required />
+        <input name="Quantity" [(ngModel)]='model.Quantity' #quantity="ngModel" type="number" class="form-control" required />
       </div>
       <div [hidden]="quantity.valid || quantity.pristine" class = "alert alert-danger">
         <p>!!Quantity is required!!</p>
@@ -57,7 +56,7 @@
         <input name="ImageUrl" [(ngModel)]='model.ImageUrl' type="text" class="form-control"/>
       </div>
       <div>
-        <button [disabled]='productform.invalid' class="btn btn-success" type="submit">Save</button>
+        <button (click)='saveProduct()' [disabled]='productform.invalid' class="btn btn-success">Save</button>
         <button (click)='productform.reset()' class="btn btn-warning">Reset</button>
       </div>
     </form>

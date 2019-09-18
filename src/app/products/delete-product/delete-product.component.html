@@ -1,14 +1,10 @@
-<div class="card text-center">
-    <img class="img-fluid" [src]="productDelete.ImageUrl" alt="{{productDelete.Title}}" />
-    
-    <div class="card-header">
-        {{productDelete.Title}}
-    </div>
-
-    <div class="card-body">
-        <h5 class="card-title">{{productDelete.ProductID}}</h5>
-        <p class="card-text">{{productDelete.Details}}</p>
-        <table class="table table-sm">
+<div class="card text-center">  
+    <div class="table table-responsive">
+        <img class="img-fluid" class="center" [src]="productDelete.ImageUrl" [style.height.px]='ImageHeight' [style.width.px]='ImageWidth' alt="{{productDelete.Title}}" />
+        <h2>{{productDelete.Title}}</h2>
+        <h5>{{productDelete.ProductID}}</h5>
+        <p>{{productDelete.Details}}</p>
+        <table class="table table-striped">
             <thead>
                 <th>
                     Product ID
@@ -21,7 +17,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr class="table-warning">
+                <tr>
                     <td>{{productDelete.ProductID}}</td>
                     <td>{{productDelete.Price | currency:"₹"}}</td>
                     <td>{{productDelete.Color}}</td>
@@ -29,8 +25,8 @@
             </tbody>
         </table>
         <div class="form-group">
-            <button (click)='confirmDelete()' class="btn btn-danger" >DELETE</button>
-        <!-- <button (click)='confirmDelete()' class="btn btn-info" >Cancel</button> -->
+            <button (click)='confirmDelete()' class="btn btn-danger" >Confirm DELETE</button>
+            <button (click)='goBack()' class="btn btn-info" >Cancel</button>
         </div>
     </div>
 </div>
