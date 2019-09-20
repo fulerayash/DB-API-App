@@ -74,7 +74,6 @@ export class EditProductComponent implements OnInit {
       this.serviceProduct.updateProduct(this.editProductById, this.editableProductForm.value).subscribe(data=>{
         console.log(data);
       });
-    // });
     alert("Updated");
     this.goBack();
   }

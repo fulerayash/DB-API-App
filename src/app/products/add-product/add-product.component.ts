@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Entities/Product';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,7 @@ export class AddProductComponent{
   model : Product;
 
 
-  constructor(private productService: ProductService){
+  constructor(private productService: ProductService, private router :Router){
     this.model= new Product();
   }
 
@@ -24,8 +25,12 @@ export class AddProductComponent{
     });
     this.productService.getProducts();
     alert("Product Added");
+    this.goBack();
   }
   
+  goBack() : void{
+    this.router.navigate(['listproducts'])
+  }
 
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../Entities/Product';
 import { ProductService } from '../product.service';
@@ -8,7 +8,7 @@ import { ProductService } from '../product.service';
   templateUrl: './list-product.component.html',
   styleUrls: ['./list-product.component.css']
 })
-export class ListProductComponent implements OnInit {
+export class ListProductComponent implements OnInit, AfterViewInit {
 
   title: string = "PRODUCT APP";
   products: Product[];
@@ -22,6 +22,13 @@ export class ListProductComponent implements OnInit {
     this.productService.getProducts().subscribe((data)=>{
       this.products= data;
     });
+  }
+  
+  ngAfterViewInit(){
+    setTimeout(()=>this.productService.getProducts().subscribe((data)=>{
+      this.products= data;
+    }),200);
+
   }
 
   editProduct(id): void{
